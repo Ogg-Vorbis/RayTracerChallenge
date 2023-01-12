@@ -38,6 +38,39 @@ public readonly struct Element
         return new Element(x, y, z, false);
     }
 
+    public float GetMagnitude()
+    {
+        var sumOfSquares = (X * X) + (Y * Y) + (Z * Z);
+        return MathF.Sqrt(sumOfSquares);
+    }
+
+    public Element Normalize()
+    {
+        return this / GetMagnitude();
+    }
+
+    public static float Dot(Element vectorOne, Element vectorTwo)
+    {
+        if (!vectorOne.IsAVector() || !vectorTwo.IsAVector())
+        {
+            throw new ArgumentException("Both elements must be vectors.");
+        }
+        return (vectorOne.X * vectorTwo.X) + (vectorOne.Y * vectorTwo.Y) + (vectorOne.Z * vectorTwo.Z);
+    }
+
+    public static Element Cross(Element vectorOne, Element vectorTwo)
+    {
+        if (!vectorOne.IsAVector() || !vectorTwo.IsAVector())
+        {
+            throw new ArgumentException("Both elements must be vectors.");
+        }
+        return new Element(
+            (vectorOne.Y * vectorTwo.Z) - (vectorOne.Z * vectorTwo.Y),
+            (vectorOne.Z * vectorTwo.X) - (vectorOne.X * vectorTwo.Z),
+            (vectorOne.X * vectorTwo.Y) - (vectorOne.Y * vectorTwo.X),
+            false);
+    }
+
     public static Element operator +(Element a, Element b)
     {
         return new Element(a.X + b.X, a.Y + b.Y, a.Z + b.Z, a.W || b.W);
@@ -51,5 +84,20 @@ public readonly struct Element
     public static Element operator -(Element a)
     {
         return new Element(-a.X, -a.Y, -a.Z, a.W);
+    }
+
+    public static Element operator *(Element a, float b)
+    {
+        return new Element(a.X * b, a.Y * b, a.Z * b, a.W);
+    }
+
+    public static Element operator /(Element a, float b)
+    {
+        return new Element(a.X / b, a.Y / b, a.Z / b, a.W);
+    }
+
+    public override string ToString()
+    {
+        return $"(X: {X}, Y: {Y}, Z: {Z}, Type: {(W ? "Point" : "Vector")})";
     }
 }
