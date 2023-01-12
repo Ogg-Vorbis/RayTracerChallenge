@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracerChallenge.UI", "src\RayTracerChallenge.UI\RayTracerChallenge.UI.csproj", "{EECD10EE-0B6A-410C-9F2C-F2E08DEBF3E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3E1FA241-00A9-44EE-868B-016D33BC468A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracerChallenge.Features", "src\RayTracerChallenge.Features\RayTracerChallenge.Features.csproj", "{C49A5C0E-136B-4B71-9BD0-83F33E80E48A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{57D67309-56FB-4EBC-BB7B-55944508DD60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracerChallenge.Features.Tests", "test\RayTracerChallenge.Features.Tests\RayTracerChallenge.Features.Tests\RayTracerChallenge.Features.Tests.csproj", "{D3D2B808-704A-431F-BBFF-E2431E8D2543}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EECD10EE-0B6A-410C-9F2C-F2E08DEBF3E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EECD10EE-0B6A-410C-9F2C-F2E08DEBF3E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EECD10EE-0B6A-410C-9F2C-F2E08DEBF3E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EECD10EE-0B6A-410C-9F2C-F2E08DEBF3E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C49A5C0E-136B-4B71-9BD0-83F33E80E48A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C49A5C0E-136B-4B71-9BD0-83F33E80E48A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C49A5C0E-136B-4B71-9BD0-83F33E80E48A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C49A5C0E-136B-4B71-9BD0-83F33E80E48A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3D2B808-704A-431F-BBFF-E2431E8D2543}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3D2B808-704A-431F-BBFF-E2431E8D2543}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3D2B808-704A-431F-BBFF-E2431E8D2543}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3D2B808-704A-431F-BBFF-E2431E8D2543}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EECD10EE-0B6A-410C-9F2C-F2E08DEBF3E7} = {3E1FA241-00A9-44EE-868B-016D33BC468A}
+		{C49A5C0E-136B-4B71-9BD0-83F33E80E48A} = {3E1FA241-00A9-44EE-868B-016D33BC468A}
+		{D3D2B808-704A-431F-BBFF-E2431E8D2543} = {57D67309-56FB-4EBC-BB7B-55944508DD60}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {84016625-D4CC-4F4D-85F5-288CC392C8E0}
+	EndGlobalSection
+EndGlobal
