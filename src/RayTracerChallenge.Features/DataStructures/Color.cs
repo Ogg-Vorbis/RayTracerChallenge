@@ -33,4 +33,18 @@ public readonly struct Color
         return new Color(left.Red * scalar, left.Green * scalar, left.Blue * scalar);
     }
 
+    public static bool operator ==(Color left, Color right)
+    {
+        return (left.Red == right.Red
+                && left.Green == right.Green
+                && left.Blue == right.Blue);
+    }
+
+    public static bool operator !=(Color left, Color right)
+    {
+        return !(left.Red == right.Red
+                && left.Green == right.Green
+                && left.Blue == right.Blue);
+    }
+
 }
