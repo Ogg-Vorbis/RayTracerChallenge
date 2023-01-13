@@ -4,10 +4,10 @@ using RayTracerChallenge.Features.Services;
 
 namespace RayTracerChallenge.Features.Factory;
 
-public class SavingServiceFactory
+public static class ServicesFactory
 {
-    public static ISavingService Create(Canvas canvas)
+    public static IImageGenerationService CreateImageGenerationService(Canvas canvas)
     {
-        return new PPMSavingService(canvas);
+        return new PPMImageGenerationService(canvas);
     }
 }

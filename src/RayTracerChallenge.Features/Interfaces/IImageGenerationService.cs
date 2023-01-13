@@ -1,6 +1,6 @@
 ﻿namespace RayTracerChallenge.Features.Interfaces;
 
-public interface ISavingService
+public interface IImageGenerationService
 {
     string Generate();
 }

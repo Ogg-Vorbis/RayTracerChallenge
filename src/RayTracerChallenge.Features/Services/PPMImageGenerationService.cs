@@ -4,13 +4,13 @@ using System.Text;
 
 namespace RayTracerChallenge.Features.Services;
 
-public class PPMSavingService : ISavingService
+public class PPMImageGenerationService : IImageGenerationService
 {
     const int _maximumColorValue = 255;
 
     public Canvas Canvas { get; set; }
 
-    public PPMSavingService(Canvas canvas)
+    public PPMImageGenerationService(Canvas canvas)
     {
         Canvas=canvas;
     }

@@ -1,17 +1,15 @@
-﻿using RayTracerChallenge.Features.DataStructures;
-using RayTracerChallenge.Features.Factory;
+﻿using RayTracerChallenge.Features.Factory;
 using RayTracerChallenge.Features.Interfaces;
-using RayTracerChallenge.Features.Services;
 
 namespace RayTracerChallenge.Features.Tests.Services;
 
-public class PPMSavingServiceTests
+public class PPMGenerationServiceTests
 {
     [Fact]
     public void ConstructPPMHeader()
     {
         Canvas c = new(5, 3);
-        ISavingService ppms = SavingServiceFactory.Create(c);
+        IImageGenerationService ppms = ServicesFactory.CreateImageGenerationService(c);
         string ppm = ppms.Generate();
         var splitString = ppm.Split(Environment.NewLine);
         splitString[0].ShouldBe("P3");
@@ -31,7 +29,7 @@ public class PPMSavingServiceTests
         canvas.WritePixel(2, 1, c2);
         canvas.WritePixel(4, 2, c3);
 
-        ISavingService ppms = SavingServiceFactory.Create(canvas);
+        IImageGenerationService ppms = ServicesFactory.CreateImageGenerationService(canvas);
         string ppm = ppms.Generate();
         var splitString = ppm.Split(Environment.NewLine);
         splitString[3].ShouldBe("255 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
@@ -51,7 +49,7 @@ public class PPMSavingServiceTests
                 canvas.WritePixel(j, i, c);
             }
         }
-        ISavingService ppms = SavingServiceFactory.Create(canvas);
+        IImageGenerationService ppms = ServicesFactory.CreateImageGenerationService(canvas);
         string ppm = ppms.Generate();
         var splitString = ppm.Split(Environment.NewLine);
         splitString[3].ShouldBe("255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204");
@@ -64,7 +62,7 @@ public class PPMSavingServiceTests
     public void ConstructPPM_FileEndsWithNewLine()
     {
         Canvas c = new(5, 3);
-        ISavingService ppms = SavingServiceFactory.Create(c);
+        IImageGenerationService ppms = ServicesFactory.CreateImageGenerationService(c);
         string ppm = ppms.Generate();
         ppm[^1].ToString().ShouldBe("\n");
     }

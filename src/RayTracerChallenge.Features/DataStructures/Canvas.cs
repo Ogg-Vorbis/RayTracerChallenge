@@ -15,6 +15,9 @@ public class Canvas
 
     public void WritePixel(int x, int y, Color setColor)
     {
-        Pixels[x, y].Color = setColor;
+        if (!(x<0 || x>=Width || y<0 || y>=Height))
+        {
+            Pixels[x, y].Color = setColor;
+        }
     }
 }
