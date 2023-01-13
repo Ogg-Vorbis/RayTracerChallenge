@@ -1,4 +1,6 @@
-﻿namespace RayTracerChallenge.Features.DataStructures;
+﻿using RayTracerChallenge.Features.Exceptions;
+
+namespace RayTracerChallenge.Features.DataStructures;
 
 public struct Matrix
 {
@@ -135,5 +137,15 @@ public struct Matrix
             m[3, 3] = 1;
             return m;
         }
+    }
+
+    public float GetDeterminant()
+    {
+        if (RowCount != 2 || ColumnCount != 2)
+        {
+            throw new InvalidMatrixSizeException("Can only get determinant of a 2 x 2 matrix");
+        }
+        return (this[0, 0] * this[1, 1])
+                - (this[0, 1] * this[1, 0]);
     }
 }

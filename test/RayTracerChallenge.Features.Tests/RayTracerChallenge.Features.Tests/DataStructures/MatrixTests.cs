@@ -305,4 +305,37 @@ public class MatrixTests
         Matrix transposed = Matrix.IdentityMatrix.Transpose();
         transposed.ShouldBe(Matrix.IdentityMatrix);
     }
+
+    [Fact]
+    public void CalculateDeterminantTwoByTwoMatrix()
+    {
+        Matrix m = new(2, 2);
+        m[0, 0] = 1;
+        m[0, 1] = 5;
+        m[1, 0] = -3;
+        m[1, 1] = 2;
+        m.GetDeterminant().ShouldBeAbout(17);
+    }
+
+    [Fact]
+    public void Submatrix3by3Into2x2()
+    {
+        Matrix m1 = new(3, 3);
+        m1[0, 0] = 1;
+        m1[0, 1] = 5;
+        m1[0, 2] = 0;
+        m1[1, 0] = -3;
+        m1[1, 1] = 2;
+        m1[1, 2] = 7;
+        m1[2, 0] = 0;
+        m1[2, 1] = 6;
+        m1[2, 2] = -3;
+
+        Matrix submatrix = m1.Submatrix(0, 2);
+        submatrix[0, 0].ShouldBeAbout(-3);
+        submatrix[0, 1].ShouldBeAbout(2);
+        submatrix[1, 0].ShouldBeAbout(0);
+        submatrix[1, 1].ShouldBeAbout(6);
+
+    }
 }
