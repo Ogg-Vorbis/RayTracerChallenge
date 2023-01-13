@@ -99,6 +99,19 @@ public struct Matrix
         return base.GetHashCode();
     }
 
+    public Matrix Transpose()
+    {
+        Matrix transposed = new(ColumnCount, RowCount);
+        for (int i = 0; i < ColumnCount; i++)
+        {
+            for (int j = 0; j < RowCount; j++)
+            {
+                transposed[i, j] = this[j, i];
+            }
+        }
+        return transposed;
+    }
+
     public static Matrix IdentityMatrix
     {
         get

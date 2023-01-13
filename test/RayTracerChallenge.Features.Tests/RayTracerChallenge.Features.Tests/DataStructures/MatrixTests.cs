@@ -254,4 +254,55 @@ public class MatrixTests
 
         (Matrix.IdentityMatrix * m1).ShouldBe(m1);
     }
+
+    [Fact]
+    public void MatrixTransposing()
+    {
+        Matrix m1 = new(4, 4);
+        m1[0, 0] = 0;
+        m1[0, 1] = 9;
+        m1[0, 2] = 3;
+        m1[0, 3] = 0;
+        m1[1, 0] = 9;
+        m1[1, 1] = 8;
+        m1[1, 2] = 0;
+        m1[1, 3] = 8;
+        m1[2, 0] = 1;
+        m1[2, 1] = 8;
+        m1[2, 2] = 5;
+        m1[2, 3] = 3;
+        m1[3, 0] = 0;
+        m1[3, 1] = 0;
+        m1[3, 2] = 5;
+        m1[3, 3] = 8;
+
+        Matrix transposed = m1.Transpose();
+
+        Matrix m2 = new(4, 4);
+        m2[0, 0] = 0;
+        m2[0, 1] = 9;
+        m2[0, 2] = 1;
+        m2[0, 3] = 0;
+        m2[1, 0] = 9;
+        m2[1, 1] = 8;
+        m2[1, 2] = 8;
+        m2[1, 3] = 0;
+        m2[2, 0] = 3;
+        m2[2, 1] = 0;
+        m2[2, 2] = 5;
+        m2[2, 3] = 5;
+        m2[3, 0] = 0;
+        m2[3, 1] = 8;
+        m2[3, 2] = 3;
+        m2[3, 3] = 8;
+
+        transposed.ShouldBe(m2);
+    }
+
+    [Fact]
+    public void TransposeIdentityMatrix()
+    {
+        Matrix transposed = Matrix.IdentityMatrix.Transpose();
+        transposed.ShouldBe(Matrix.IdentityMatrix);
+    }
 }
