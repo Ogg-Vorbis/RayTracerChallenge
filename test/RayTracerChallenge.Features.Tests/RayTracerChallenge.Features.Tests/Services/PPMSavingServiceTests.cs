@@ -1,4 +1,5 @@
-﻿using RayTracerChallenge.Features.Factory;
+﻿using RayTracerChallenge.Features.DataStructures;
+using RayTracerChallenge.Features.Factory;
 using RayTracerChallenge.Features.Interfaces;
 using RayTracerChallenge.Features.Services;
 
@@ -57,5 +58,14 @@ public class PPMSavingServiceTests
         splitString[4].ShouldBe("153 255 204 153 255 204 153 255 204 153 255 204 153");
         splitString[5].ShouldBe("255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204");
         splitString[6].ShouldBe("153 255 204 153 255 204 153 255 204 153 255 204 153");
+    }
+
+    [Fact]
+    public void ConstructPPM_FileEndsWithNewLine()
+    {
+        Canvas c = new(5, 3);
+        ISavingService ppms = SavingServiceFactory.Create(c);
+        string ppm = ppms.Generate();
+        ppm[^1].ToString().ShouldBe("\n");
     }
 }
