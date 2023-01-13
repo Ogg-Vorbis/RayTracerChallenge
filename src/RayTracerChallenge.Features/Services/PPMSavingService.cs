@@ -33,42 +33,37 @@ public class PPMSavingService : ISavingService
 
     private void BuildContents(StringBuilder sb)
     {
-        var data = GetAllColorCodes();
-        var splitData = data.Split(' ');
+        var colorCodes = GetAllColorCodes();
         string line = "";
-        foreach (var s in splitData)
+        foreach (var color in colorCodes)
         {
-            if (s.Length + line.Length <= 70)
+            if (color != Environment.NewLine && (color.Length + line.Length) <= 70)
             {
-                line += s + " ";
+                line += color + " ";
             }
             else
             {
-                sb.AppendLine(line);
-                line = s + " ";
+                sb.AppendLine(line.Trim());
+                line = color + " ";
             }
         }
 
     }
 
-    private string GetAllColorCodes()
+    private List<string> GetAllColorCodes()
     {
-        StringBuilder sb = new();
+        List<string> colorCodes = new();
         for (int i = 0; i < Canvas.Height; i++)
         {
             for (int j = 0; j < Canvas.Width; j++)
             {
-                sb.Append($"{ScaleColorValue(Canvas.Pixels[j, i].Color.Red)} " +
-                    $"{ScaleColorValue(Canvas.Pixels[j, i].Color.Green)} " +
-                    $"{ScaleColorValue(Canvas.Pixels[j, i].Color.Blue)}");
-                if (j < Canvas.Width - 1)
-                {
-                    sb.Append(' ');
-                }
+                colorCodes.Add(ScaleColorValue(Canvas.Pixels[j, i].Color.Red));
+                colorCodes.Add(ScaleColorValue(Canvas.Pixels[j, i].Color.Green));
+                colorCodes.Add(ScaleColorValue(Canvas.Pixels[j, i].Color.Blue));
             }
-            sb.Append(Environment.NewLine);
+            colorCodes.Add(Environment.NewLine);
         }
-        return sb.ToString();
+        return colorCodes;
     }
 
     private static string ScaleColorValue(float colorValue)
