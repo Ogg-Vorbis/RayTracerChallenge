@@ -47,4 +47,14 @@ public readonly struct Color
                 && left.Blue == right.Blue);
     }
 
+    public override bool Equals(object? obj)
+    {
+        if (obj is null) return false;
+        return obj is Color && this == (Color)obj;
+    }
+
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
 }
