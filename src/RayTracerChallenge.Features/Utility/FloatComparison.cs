@@ -14,6 +14,6 @@ public static class FloatComparison
             return true;
         }
 
-        return Math.Abs(a - b) < _epsilon;
+        return MathF.Abs(a - b) < _epsilon;
     }
 }
