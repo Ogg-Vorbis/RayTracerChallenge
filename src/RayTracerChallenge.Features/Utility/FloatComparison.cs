@@ -2,7 +2,7 @@
 
 public static class FloatComparison
 {
-    const float _epsilon = 0.00001f;
+    const float _epsilon = 0.0001f;
 
     /// <summary>
     /// Returns true if the two floats are equal, within a small epsilon.

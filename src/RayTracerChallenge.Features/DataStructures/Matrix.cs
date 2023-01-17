@@ -141,11 +141,74 @@ public struct Matrix
 
     public float GetDeterminant()
     {
-        if (RowCount != 2 || ColumnCount != 2)
+        if (ColumnCount == 2 && RowCount == 2)
         {
-            throw new InvalidMatrixSizeException("Can only get determinant of a 2 x 2 matrix");
-        }
-        return (this[0, 0] * this[1, 1])
+            return (this[0, 0] * this[1, 1])
                 - (this[0, 1] * this[1, 0]);
+        }
+        float det = 0f;
+        for (int i = 0; i < ColumnCount; i++)
+        {
+            det += this[0, i] * GetCofactor(0, i);
+        }
+        return det;
+    }
+
+    public float GetMinor(int row, int col)
+    {
+        Matrix submatrix = Submatrix(row, col);
+        return submatrix.GetDeterminant();
+    }
+
+    public Matrix Submatrix(int row, int column)
+    {
+        Matrix m = new(RowCount - 1, ColumnCount - 1);
+        for (int i = 0; i < RowCount; i++)
+        {
+            for (int j = 0; j < ColumnCount; j++)
+            {
+                if (i != row && j != column)
+                {
+                    m[i < row ? i : i - 1, j < column ? j : j - 1] = this[i, j];
+                }
+            }
+        }
+        return m;
+    }
+
+    public float GetCofactor(int row, int column)
+    {
+        var minor = GetMinor(row, column);
+        if ((row + column) % 2 == 0)
+        {
+            return minor;
+        }
+        return -minor;
+    }
+
+    public bool IsInvertible()
+    {
+        return !FloatComparison.AboutEqual(GetDeterminant(), 0);
+
+        
+    }
+
+    public Matrix Inverse()
+    {
+        if(!IsInvertible())
+        {
+            throw new MatrixNotInvertibleException();
+        }
+
+        Matrix invert = new(RowCount, ColumnCount);
+        for (int row = 0; row < RowCount; row++)
+        {
+            for (int col = 0; col < ColumnCount; col++)
+            {
+                float c = GetCofactor(row, col);
+                invert[col, row] = c / GetDeterminant();
+            }
+        }
+        return invert;
     }
 }
