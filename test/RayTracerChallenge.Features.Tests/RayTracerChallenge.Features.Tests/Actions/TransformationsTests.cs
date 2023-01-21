@@ -127,4 +127,109 @@ public class TransformationsTests
         fqr.Z.ShouldBeAbout(0);
         fqr.IsAPoint().ShouldBeTrue();
     }
+
+    [Fact]
+    public void ShearingTransformationMovesXInProporationToY()
+    {
+        Matrix shear = Transformations.CreateShearingMatrix(1f, 0f, 0f, 0f, 0f, 0f);
+        Element p = Element.CreatePoint(2, 3, 4);
+        var result = shear * p;
+        result.X.ShouldBeAbout(5);
+        result.Y.ShouldBeAbout(3);
+        result.Z.ShouldBeAbout(4);
+    }
+    [Fact]
+    public void ShearingTransformationMovesXInProporationToZ()
+    {
+        Matrix shear = Transformations.CreateShearingMatrix(0f, 1f, 0f, 0f, 0f, 0f);
+        Element p = Element.CreatePoint(2, 3, 4);
+        var result = shear * p;
+        result.X.ShouldBeAbout(6);
+        result.Y.ShouldBeAbout(3);
+        result.Z.ShouldBeAbout(4);
+    }
+
+    [Fact]
+    public void ShearingTransformationMovesYInProporationToX()
+    {
+        Matrix shear = Transformations.CreateShearingMatrix(0f, 0f, 1f, 0f, 0f, 0f);
+        Element p = Element.CreatePoint(2, 3, 4);
+        var result = shear * p;
+        result.X.ShouldBeAbout(2);
+        result.Y.ShouldBeAbout(5);
+        result.Z.ShouldBeAbout(4);
+    }
+
+    [Fact]
+    public void ShearingTransformationMovesYInProporationToZ()
+    {
+        Matrix shear = Transformations.CreateShearingMatrix(0f, 0f, 0f, 1f, 0f, 0f);
+        Element p = Element.CreatePoint(2, 3, 4);
+        var result = shear * p;
+        result.X.ShouldBeAbout(2);
+        result.Y.ShouldBeAbout(7);
+        result.Z.ShouldBeAbout(4);
+    }
+
+    [Fact]
+    public void ShearingTransformationMovesZInProporationToX()
+    {
+        Matrix shear = Transformations.CreateShearingMatrix(0f, 0f, 0f, 0f, 1f, 0f);
+        Element p = Element.CreatePoint(2, 3, 4);
+        var result = shear * p;
+        result.X.ShouldBeAbout(2);
+        result.Y.ShouldBeAbout(3);
+        result.Z.ShouldBeAbout(6);
+    }
+
+    [Fact]
+    public void ShearingTransformationMovesZInProporationToY()
+    {
+        Matrix shear = Transformations.CreateShearingMatrix(0f, 0f, 0f, 0f, 0f, 1f);
+        Element p = Element.CreatePoint(2, 3, 4);
+        var result = shear * p;
+        result.X.ShouldBeAbout(2);
+        result.Y.ShouldBeAbout(3);
+        result.Z.ShouldBeAbout(7);
+    }
+
+    [Fact]
+    public void IndividualTransformationSequence()
+    {
+        
+        Element p = Element.CreatePoint(1, 0, 1);
+        Matrix A = Transformations.CreateRotationMatrix(Axis.X, MathF.PI / 2);
+        Matrix B = Transformations.CreateScalingMatrix(5, 5, 5);
+        Matrix C = Transformations.CreateTranslationMatrix(10, 5, 7);
+
+        // Rotation first
+        Element p2 = A * p;
+        p2.X.ShouldBeAbout(1);
+        p2.Y.ShouldBeAbout(-1);
+        p2.Z.ShouldBeAbout(0);
+
+        // Scaling next
+        Element p3 = B * p2;
+        p3.X.ShouldBeAbout(5);
+        p3.Y.ShouldBeAbout(-5);
+        p3.Z.ShouldBeAbout(0);
+
+        // Translation Last
+        Element p4 = C * p3;
+        p4.X.ShouldBeAbout(15);
+        p4.Y.ShouldBeAbout(0);
+        p4.Z.ShouldBeAbout(7);
+    }
+
+    [Fact]
+    public void ChainedTransformationsMustBeInReverseOrderFromIndividual()
+    {
+        Element p = Element.CreatePoint(1, 0, 1);
+        Matrix A = Transformations.CreateRotationMatrix(Axis.X, MathF.PI / 2);
+        Matrix B = Transformations.CreateScalingMatrix(5, 5, 5);
+        Matrix C = Transformations.CreateTranslationMatrix(10, 5, 7);
+
+        Matrix T = C * B * A; // Order matters!
+        (T * p).ShouldBe(Element.CreatePoint(15, 0, 7));
+    }
 }

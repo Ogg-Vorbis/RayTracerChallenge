@@ -51,4 +51,16 @@ public class Transformations
         }
         return ident;
     }
+
+    public static Matrix CreateShearingMatrix(float xy, float xz, float yx, float yz, float zx, float zy)
+    {
+        Matrix ident = Matrix.IdentityMatrix;
+        ident[0, 1] = xy;
+        ident[0, 2] = xz;
+        ident[1, 0] = yx;
+        ident[1, 2] = yz;
+        ident[2, 0] = zx;
+        ident[2, 1] = zy;
+        return ident;
+    }
 }
