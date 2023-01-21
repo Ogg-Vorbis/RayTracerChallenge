@@ -1,7 +1,7 @@
-﻿using RayTracerChallenge.ElementGame;
-using RayTracerChallenge.Features.DataStructures;
+﻿using RayTracerChallenge.Features.DataStructures;
 using RayTracerChallenge.Features.Factory;
-using Environment = RayTracerChallenge.ElementGame.Environment;
+using RayTracerChallenge.Games;
+using Environment = RayTracerChallenge.Games.Environment;
 
 Canvas canvas = new(900, 550);
 Color pixelColor = new(1, 0.2f, 0.5f);

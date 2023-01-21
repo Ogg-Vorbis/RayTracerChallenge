@@ -1,5 +1,6 @@
 ﻿using RayTracerChallenge.Features.Actions;
 using RayTracerChallenge.Features.Enums;
+using RayTracerChallenge.Features.Extensions;
 
 namespace RayTracerChallenge.Features.Tests.Actions;
 
@@ -231,5 +232,18 @@ public class TransformationsTests
 
         Matrix T = C * B * A; // Order matters!
         (T * p).ShouldBe(Element.CreatePoint(15, 0, 7));
+    }
+
+    [Fact]
+    public void ChainedTransformationsMustBeInReverseOrderFromIndividualUsingExtensions()
+    {
+        Element p = Element.CreatePoint(1, 0, 1);
+
+        Matrix X = Matrix.IdentityMatrix
+            .Rotate(Axis.X, 90)
+            .Scale(5, 5, 5)
+            .Translate(10, 5, 7);
+
+        (X * p).ShouldBe(Element.CreatePoint(15, 0, 7));
     }
 }

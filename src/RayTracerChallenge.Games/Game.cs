@@ -1,13 +1,13 @@
 ﻿using RayTracerChallenge.Features.DataStructures;
 
-namespace RayTracerChallenge.ElementGame;
+namespace RayTracerChallenge.Games;
 
 public class Game
 {
     public Game(Projectile projectile, Environment environment)
     {
-        Projectile=projectile;
-        Environment=environment;
+        Projectile = projectile;
+        Environment = environment;
     }
 
     public Projectile Projectile { get; private set; }

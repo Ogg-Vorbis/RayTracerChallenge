@@ -1,6 +1,6 @@
 ﻿using RayTracerChallenge.Features.DataStructures;
 
-namespace RayTracerChallenge.ElementGame;
+namespace RayTracerChallenge.Games;
 
 public class Environment
 {
