@@ -1,4 +1,6 @@
-﻿namespace RayTracerChallenge.Features.DataStructures;
+﻿using System.Drawing;
+
+namespace RayTracerChallenge.Features.DataStructures;
 
 public readonly struct Color
 {
@@ -8,7 +10,17 @@ public readonly struct Color
         Green=green;
         Blue=blue;
     }
-
+    
+    public Color(string hex)
+    {
+        if(hex.Length == 6 ) { hex = $"#{hex}"; }
+        else if (hex.Length != 7) { throw new ArgumentException("Invalid Hex Code"); }
+        System.Drawing.Color color = ColorTranslator.FromHtml(hex);
+        Red = (Convert.ToInt16(color.R) / 255f);
+        Green = (Convert.ToInt16(color.G) / 255f);
+        Blue = (Convert.ToInt16(color.B) / 255f);
+    }
+    
     public float Red { get; }
     public float Green { get; }
     public float Blue { get; }

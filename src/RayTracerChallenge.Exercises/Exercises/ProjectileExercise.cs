@@ -31,7 +31,7 @@ public class ProjectileExercise : IExercise
 
             if (i == 0)
             {
-                Color firstPixel = new(0, 0, 1);
+                Color firstPixel = new("318FDF");
                 canvas.WritePixel(x, y, firstPixel);
                 canvas.WritePixel(x + 1, y, firstPixel);
                 canvas.WritePixel(x, y + 1, firstPixel);
