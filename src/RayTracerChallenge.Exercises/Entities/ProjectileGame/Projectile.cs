@@ -1,6 +1,6 @@
 ﻿using RayTracerChallenge.Features.DataStructures;
 
-namespace RayTracerChallenge.Games;
+namespace RayTracerChallenge.Exercises.Entities.ProjectileGame;
 
 public class Projectile
 {

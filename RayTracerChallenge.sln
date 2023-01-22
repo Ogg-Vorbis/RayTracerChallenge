@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{57D67309-5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayTracerChallenge.Features.Tests", "test\RayTracerChallenge.Features.Tests\RayTracerChallenge.Features.Tests\RayTracerChallenge.Features.Tests.csproj", "{D3D2B808-704A-431F-BBFF-E2431E8D2543}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayTracerChallenge.Games", "src\RayTracerChallenge.Games\RayTracerChallenge.Games.csproj", "{D15492F5-2FA5-4046-9C33-763D8B9A9DC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayTracerChallenge.Exercises", "src\RayTracerChallenge.Exercises\RayTracerChallenge.Exercises.csproj", "{D15492F5-2FA5-4046-9C33-763D8B9A9DC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
