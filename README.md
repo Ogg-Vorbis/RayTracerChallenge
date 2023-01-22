@@ -12,7 +12,7 @@ There's no research necessary -- all the necessary formulas and algorithms are p
 
 Play and experiment as you discover the fun of writing a ray tracer. Accept the challenge today!
 
-## Image Outputs Converted to PNG
+## Exercise Outputs
 
-### Element "Game"
+### Projectile Exercise
 ![Element "Game" output](https://github.com/Ogg-Vorbis/RayTracerChallenge/blob/master/output/projectile.png?raw=true)
