@@ -8,9 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RayTracerChallenge.ElementGame\RayTracerChallenge.Games.csproj" />
     <ProjectReference Include="..\RayTracerChallenge.Exercises\RayTracerChallenge.Exercises.csproj" />
-    <ProjectReference Include="..\RayTracerChallenge.Games\RayTracerChallenge.Exercises.csproj" />
   </ItemGroup>
 
 </Project>
