@@ -1,5 +1,4 @@
-﻿using RayTracerChallenge.Exercises;
-using RayTracerChallenge.Exercises.Exercises;
+﻿using RayTracerChallenge.Exercises.Exercises;
 using RayTracerChallenge.Exercises.Interfaces;
 using RayTracerChallenge.Features.DataStructures;
 using RayTracerChallenge.Features.Factory;
@@ -9,7 +8,8 @@ using RayTracerChallenge.Features.Factory;
 List<IExercise> exercises = new()
 {
     new ProjectileExercise(new(Element.CreatePoint(0, 1, 0), Element.CreateVector(1, 1.8f, 0).Normalize() * 11.25f),
-        new(Element.CreateVector(0, -0.1f, 0), Element.CreateVector(-0.01f, 0, 0)))
+        new(Element.CreateVector(0, -0.1f, 0), Element.CreateVector(-0.01f, 0, 0))),
+    new ClockExercise()
 };
 
 foreach (var exercise in exercises)
