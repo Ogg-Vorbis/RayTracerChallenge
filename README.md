@@ -15,4 +15,7 @@ Play and experiment as you discover the fun of writing a ray tracer. Accept the 
 ## Exercise Outputs
 
 ### Projectile Exercise
-![Element "Game" output](https://github.com/Ogg-Vorbis/RayTracerChallenge/blob/master/output/projectile.png?raw=true)
+![Projectile Exercise output](https://github.com/Ogg-Vorbis/RayTracerChallenge/blob/master/output/ProjectileExercise.png?raw=true)
+
+### Clock Exercise
+![Clock Exercise output](https://github.com/Ogg-Vorbis/RayTracerChallenge/blob/master/output/ClockExercise.png?raw=true)
