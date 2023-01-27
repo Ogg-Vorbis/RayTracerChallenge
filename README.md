@@ -19,3 +19,7 @@ Play and experiment as you discover the fun of writing a ray tracer. Accept the 
 
 ### Clock Exercise
 ![Clock Exercise output](https://github.com/Ogg-Vorbis/RayTracerChallenge/blob/master/output/ClockExercise.png?raw=true)
+
+### Sphere Hits Exercise
+#### My attempt before consulting book
+![Clock Exercise output](https://github.com/Ogg-Vorbis/RayTracerChallenge/blob/master/output/SphereHitsExercise-MyAttempt.png?raw=true)
