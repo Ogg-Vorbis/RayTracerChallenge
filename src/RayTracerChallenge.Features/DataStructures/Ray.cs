@@ -12,4 +12,11 @@ public readonly struct Ray
     public Element Direction { get; }
 
     public Element Position(float t) => Origin + Direction * t;
+
+    public Ray Transform(Matrix m)
+    {
+        Element origin = m * Origin;
+        Element direction = m * Direction;
+        return new(origin, direction);
+    }
 }

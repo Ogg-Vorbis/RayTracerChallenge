@@ -4,11 +4,14 @@ namespace RayTracerChallenge.Features.Primitives;
 
 public class Sphere
 {
+    public Matrix Transform { get; set; } = Matrix.IdentityMatrix;
+
     public Intersection[] Intersect(Ray ray)
     {
-        var sphereToRay = ray.Origin - Element.CreatePoint(0, 0, 0);
-        var a = Element.Dot(ray.Direction, ray.Direction);
-        var b = 2 * Element.Dot(ray.Direction, sphereToRay);
+        var transformedRay = ray.Transform(Transform.Inverse());
+        var sphereToRay = transformedRay.Origin - Element.CreatePoint(0, 0, 0);
+        var a = Element.Dot(transformedRay.Direction, transformedRay.Direction);
+        var b = 2 * Element.Dot(transformedRay.Direction, sphereToRay);
         var c = Element.Dot(sphereToRay, sphereToRay) - 1;
 
         var discriminant = (b * b) - 4 * a * c;

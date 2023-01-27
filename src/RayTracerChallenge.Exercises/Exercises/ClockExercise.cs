@@ -8,10 +8,12 @@ public class ClockExercise : IExercise
 {
     public Canvas Run()
     {
+        // Canvas Setup
         Canvas canvas = new(256, 256);
         Color BackgroundColor = new("36213e");
         Color PixelColor = new("b8f3ff");
         canvas.WriteAllPixels(BackgroundColor);
+        // Exercise
         Element CenterPoint = Element.CreatePoint(canvas.Width / 2f, canvas.Height / 2f, 0);
         Element Twelve = Element.CreatePoint(0, 1, 0);
         float clockRadius = canvas.Width * .375f;

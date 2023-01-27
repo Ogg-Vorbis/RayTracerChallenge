@@ -1,4 +1,5 @@
-﻿using RayTracerChallenge.Features.Primitives;
+﻿using RayTracerChallenge.Features.Actions;
+using RayTracerChallenge.Features.Primitives;
 
 namespace RayTracerChallenge.Features.Tests.Primitives;
 
@@ -65,6 +66,44 @@ public class SphereTests
         var xs = sphere.Intersect(ray);
         xs[0].Object.ShouldBe(sphere);
         xs[1].Object.ShouldBe(sphere);
+    }
+
+    [Fact]
+    public void SphereDefaultTransformation()
+    {
+        Sphere s = new();
+        s.Transform.ShouldBe(Matrix.IdentityMatrix);
+    }
+
+    [Fact]
+    public void ChangingASpheresTransformation()
+    {
+        Sphere s = new();
+        Matrix t = Transformations.CreateTranslationMatrix(2, 3, 4);
+        s.Transform = t;
+        s.Transform.ShouldBe(t);
+    }
+
+    [Fact]
+    public void IntersectingAScaledSphereWithARay()
+    {
+        var ray = new Ray(Element.CreatePoint(0, 0, -5), Element.CreateVector(0, 0, 1));
+        var s = new Sphere();
+        s.Transform = Transformations.CreateScalingMatrix(2, 2, 2);
+        var xs = s.Intersect(ray);
+        xs.Length.ShouldBe(2);
+        xs[0].T.ShouldBeAbout(3);
+        xs[1].T.ShouldBeAbout(7);
+    }
+
+    [Fact]
+    public void IntersectingATranslatedSphereWithARay()
+    {
+        var ray = new Ray(Element.CreatePoint(0, 0, -5), Element.CreateVector(0, 0, 1));
+        var s = new Sphere();
+        s.Transform = Transformations.CreateTranslationMatrix(5, 0, 0);
+        var xs = s.Intersect(ray);
+        xs.Length.ShouldBe(0);
     }
 
 }
