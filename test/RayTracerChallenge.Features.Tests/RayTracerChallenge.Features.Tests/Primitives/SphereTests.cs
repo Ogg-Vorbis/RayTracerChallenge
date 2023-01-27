@@ -9,9 +9,9 @@ public class SphereTests
     {
         var ray = new Ray(Element.CreatePoint(0, 0, -5f), Element.CreateVector(0, 0, 1));
         var sphere = new Sphere();
-        float[] xs = sphere.Intersect(ray);
-        xs[0].ShouldBeAbout(4.0f);
-        xs[1].ShouldBeAbout(6.0f);
+        var xs = sphere.Intersect(ray);
+        xs[0].T.ShouldBeAbout(4.0f);
+        xs[1].T.ShouldBeAbout(6.0f);
     }
 
     [Fact]
@@ -19,10 +19,10 @@ public class SphereTests
     {
         var ray = new Ray(Element.CreatePoint(0, 1, -5f), Element.CreateVector(0, 0, 1));
         var sphere = new Sphere();
-        float[] xs = sphere.Intersect(ray);
+        var xs = sphere.Intersect(ray);
         xs.Length.ShouldBe(2);
-        xs[0].ShouldBeAbout(5);
-        xs[1].ShouldBeAbout(5);
+        xs[0].T.ShouldBeAbout(5);
+        xs[1].T.ShouldBeAbout(5);
     }
 
     [Fact]
@@ -30,7 +30,7 @@ public class SphereTests
     {
         var ray = new Ray(Element.CreatePoint(0, 2, -5f), Element.CreateVector(0, 0, 1));
         var sphere = new Sphere();
-        float[] xs = sphere.Intersect(ray);
+        var xs = sphere.Intersect(ray);
         xs.Length.ShouldBe(0);
     }
 
@@ -39,10 +39,10 @@ public class SphereTests
     {
         var ray = new Ray(Element.CreatePoint(0, 0, 0), Element.CreateVector(0, 0, 1));
         var sphere = new Sphere();
-        float[] xs = sphere.Intersect(ray);
+        var xs = sphere.Intersect(ray);
         xs.Length.ShouldBe(2);
-        xs[0] = -1f;
-        xs[1] = 1f;
+        xs[0].T.ShouldBeAbout(-1f);
+        xs[1].T.ShouldBeAbout(1f);
     }
 
     [Fact]
@@ -50,10 +50,21 @@ public class SphereTests
     {
         var ray = new Ray(Element.CreatePoint(0, 0, 5), Element.CreateVector(0, 0, 1));
         var sphere = new Sphere();
-        float[] xs = sphere.Intersect(ray);
+        var xs = sphere.Intersect(ray);
         xs.Length.ShouldBe(2);
-        xs[0] = -6f;
-        xs[1] = -4f;
+        xs[0].T.ShouldBeAbout(-6f);
+        xs[1].T.ShouldBeAbout(-4f);
+
+    }
+
+    [Fact]
+    public void IntersectSetsTheObjectOnIntersection()
+    {
+        var ray = new Ray(Element.CreatePoint(0, 0, -5), Element.CreateVector(0, 0, 1));
+        var sphere = new Sphere();
+        var xs = sphere.Intersect(ray);
+        xs[0].Object.ShouldBe(sphere);
+        xs[1].Object.ShouldBe(sphere);
     }
 
 }
