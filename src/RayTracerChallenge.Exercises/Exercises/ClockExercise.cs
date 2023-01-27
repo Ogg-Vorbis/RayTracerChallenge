@@ -6,6 +6,13 @@ namespace RayTracerChallenge.Exercises.Exercises;
 
 public class ClockExercise : IExercise
 {
+    public bool WriteToConsole { get; set; }
+
+    public ClockExercise(bool writeToConsole)
+    {
+        WriteToConsole=writeToConsole;
+    }
+
     public Canvas Run()
     {
         // Canvas Setup

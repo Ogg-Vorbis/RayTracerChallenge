@@ -10,17 +10,17 @@ public readonly struct Color
         Green=green;
         Blue=blue;
     }
-    
+
     public Color(string hex)
     {
-        if(hex.Length == 6 ) { hex = $"#{hex}"; }
+        if (hex.Length == 6) { hex = $"#{hex}"; }
         else if (hex.Length != 7) { throw new ArgumentException("Invalid Hex Code"); }
         System.Drawing.Color color = ColorTranslator.FromHtml(hex);
         Red = (Convert.ToInt16(color.R) / 255f);
         Green = (Convert.ToInt16(color.G) / 255f);
         Blue = (Convert.ToInt16(color.B) / 255f);
     }
-    
+
     public float Red { get; }
     public float Green { get; }
     public float Blue { get; }
@@ -68,5 +68,28 @@ public readonly struct Color
     public override int GetHashCode()
     {
         return base.GetHashCode();
+    }
+
+    public Color ChangeColorBrightness(float correctionFactor)
+    {
+        float red = Red * 255f;
+        float green = Green * 255f;
+        float blue = Blue * 255f;
+
+        if (correctionFactor < 0)
+        {
+            correctionFactor = 1 + correctionFactor;
+            red *= correctionFactor;
+            green *= correctionFactor;
+            blue *= correctionFactor;
+        }
+        else
+        {
+            red = (255 - red) * correctionFactor + red;
+            green = (255 - green) * correctionFactor + green;
+            blue = (255 - blue) * correctionFactor + blue;
+        }
+
+        return new Color(red / 255f, green / 255f, blue/ 255f);
     }
 }
