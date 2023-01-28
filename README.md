@@ -22,6 +22,8 @@ Play and experiment as you discover the fun of writing a ray tracer. Accept the 
 
 ### Sphere Hits Exercise
 #### My attempt before consulting book
-![Sphere Hit Exercise Attempt 1](https://github.com/Ogg-Vorbis/RayTracerChallenge/blob/master/output/SphereHitsExercise-MyAttempt.png?raw=true)
+![Sphere Hit Exercise My Attempt](https://github.com/Ogg-Vorbis/RayTracerChallenge/blob/master/output/SphereHitsExercise-MyAttempt.png?raw=true)
 #### Color changes in proportion to the hit's T value
 ![Sphere Hit Exercise Changing color in proporation to Hit.T](https://github.com/Ogg-Vorbis/RayTracerChallenge/blob/master/output/SphereHitsExercise-ColorChangeToHitT.png?raw=true)
+#### Book Solution
+![Sphere Hit Exercise Book Solution](https://github.com/Ogg-Vorbis/RayTracerChallenge/blob/master/output/SphereHitsExercise-BookSolution.png?raw=true)
