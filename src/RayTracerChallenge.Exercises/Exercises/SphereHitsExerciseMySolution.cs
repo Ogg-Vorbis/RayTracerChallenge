@@ -5,13 +5,13 @@ using RayTracerChallenge.Features.Primitives;
 
 namespace RayTracerChallenge.Exercises.Exercises;
 
-public class SphereHitsExercise : IExercise
+public class SphereHitsExerciseMySolution : IExercise
 {
-    public bool WriteToConsole { get; set; }
+    private readonly ConditionalConsoleWriter _consoleWriter;
 
-    public SphereHitsExercise(bool writeToConsole)
+    public SphereHitsExerciseMySolution(bool writeToConsole)
     {
-        WriteToConsole=writeToConsole;
+        _consoleWriter= new ConditionalConsoleWriter(writeToConsole);
     }
 
     public Canvas Run()
@@ -35,7 +35,7 @@ public class SphereHitsExercise : IExercise
 
                 if (hit != null)
                 {
-                    ConditionalConsoleWriter.WriteLine(hit.T.ToString(), WriteToConsole);
+                    _consoleWriter.WriteLine(hit.T.ToString());
                     canvas.WritePixel(j, i, PixelColor.ChangeColorBrightness((hit.T/2) * .02f));
                 }
             }

@@ -6,11 +6,13 @@ namespace RayTracerChallenge.Exercises.Exercises;
 
 public class ProjectileExercise : IExercise
 {
+    private readonly ConditionalConsoleWriter _consoleWriter;
+
     public ProjectileExercise(Projectile projectile, Environment environment, bool writeToConsole)
     {
         Projectile = projectile;
         Environment = environment;
-        WriteToConsole=writeToConsole;
+        _consoleWriter = new ConditionalConsoleWriter(writeToConsole);
     }
 
     public Projectile Projectile { get; private set; }
@@ -27,7 +29,7 @@ public class ProjectileExercise : IExercise
         {
 
             Tick();
-            ConditionalConsoleWriter.WriteLine($"Tick {i} - Position: {Projectile.Position}");
+            _consoleWriter.WriteLine($"Tick {i} - Position: {Projectile.Position}");
             int x = (int)Projectile.Position.X;
             int y = (int)(canvas.Height - Projectile.Position.Y);
 

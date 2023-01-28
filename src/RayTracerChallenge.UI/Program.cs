@@ -9,8 +9,8 @@ List<IExercise> exercises = new()
 {
     new ProjectileExercise(new(Element.CreatePoint(0, 1, 0), Element.CreateVector(1, 1.8f, 0).Normalize() * 11.25f),
         new(Element.CreateVector(0, -0.1f, 0), Element.CreateVector(-0.01f, 0, 0)), false),
-    new ClockExercise(false),
-    new SphereHitsExercise(true)
+    new ClockExercise(),
+    new SphereHitsExerciseMySolution(true)
 };
 
 foreach (var exercise in exercises)
