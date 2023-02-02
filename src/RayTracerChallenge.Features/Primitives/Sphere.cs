@@ -20,4 +20,12 @@ public class Sphere
         var t2 = (-b + MathF.Sqrt(discriminant)) / (2 * a);
         return new Intersection[2] { new Intersection(t1, this), new Intersection(t2, this) };
     }
+
+    public Element NormalAt(Element element)
+    {
+        var objectPoint = Transform.Inverse() * element;
+        var objectNormal = objectPoint - Element.CreatePoint(0, 0, 0);
+        var worldNormal = Transform.Inverse().Transpose() * objectNormal;
+        return worldNormal.Normalize();
+    }
 }
