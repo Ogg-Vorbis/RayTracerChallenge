@@ -100,4 +100,9 @@ public readonly struct Element
     {
         return $"(X: {X}, Y: {Y}, Z: {Z}, Type: {(W ? "Point" : "Vector")})";
     }
+
+    public Element Reflect(Element n)
+    {
+        return this - n * 2 * Dot(this, n);
+    }
 }

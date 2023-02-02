@@ -224,5 +224,27 @@ namespace RayTracerChallenge.Features.Tests.DataStructures
             Element point = Element.CreatePoint(2f, 3f, 4f);
             Should.Throw<ArgumentException>(() => Element.Cross(vectorOne, point));
         }
+
+        [Fact]
+        public void ReflectingAVectorFrom45Degrees()
+        {
+            var v = Element.CreateVector(1, -1, 0);
+            var n = Element.CreateVector(0, 1, 0);
+            var r = v.Reflect(n);
+            r.X.ShouldBeAbout(1f);
+            r.Y.ShouldBeAbout(1f);
+            r.Z.ShouldBeAbout(0f);
+        }
+
+        [Fact]
+        public void ReflectingAVectorOffASlantedSurface()
+        {
+            var v = Element.CreateVector(0, -1, 0);
+            var n = Element.CreateVector(MathF.Sqrt(2) / 2, MathF.Sqrt(2) / 2, 0);
+            var r = v.Reflect(n);
+            r.X.ShouldBeAbout(1f);
+            r.Y.ShouldBeAbout(0f);
+            r.Z.ShouldBeAbout(0f);
+        }
     }
 }
