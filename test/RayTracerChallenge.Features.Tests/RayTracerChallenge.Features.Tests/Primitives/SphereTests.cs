@@ -181,4 +181,21 @@ public class SphereTests
         n.Z.ShouldBeAbout(-0.24254f);
     }
 
+    [Fact]
+    public void SphereHasDefaultMaterial()
+    {
+        var s = new Sphere();
+        s.Material.ShouldBe(new Material());
+    }
+
+    [Fact]
+    public void SphereMayBeAssignedAMaterial()
+    {
+        var s = new Sphere();
+        var m = new Material();
+        m.Ambient = 1;
+        s.Material = m;
+        s.Material.ShouldBe(m);
+    }
+
 }

@@ -24,7 +24,7 @@ public class SphereHitsExerciseMySolution : IExercise
 
         // Exercise
         Sphere s = new();
-        s.Transform = s.Transform.Scale(75, 75, 75).Translate(256 / 2, 256/2, 0);
+        s.Transform = s.Transform.Scale(75, 75, 75).Translate(256f / 2, 256f/2, 0);
         for (int i = 0; i < canvas.Height; i++)
         {
             for (int j = 0; j < canvas.Width; j++)

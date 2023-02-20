@@ -28,7 +28,7 @@ public readonly struct Element
         return !W;
     }
 
-    public static Element CreatePoint(float x, float y, float z)
+    public static Element CreatePoint(float x = 0, float y = 0, float z = 0)
     {
         return new Element(x, y, z, true);
     }

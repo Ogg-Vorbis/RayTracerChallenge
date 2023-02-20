@@ -247,4 +247,4 @@ namespace RayTracerChallenge.Features.Tests.DataStructures
             r.Z.ShouldBeAbout(0f);
         }
     }
-}
+}  

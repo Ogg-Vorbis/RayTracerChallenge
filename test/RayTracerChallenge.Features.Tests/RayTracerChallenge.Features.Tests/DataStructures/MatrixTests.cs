@@ -342,36 +342,35 @@ public class MatrixTests
     [Fact]
     public void Submatrix4x4Into3x3()
     {
-        {
-            Matrix m1 = new(4, 4);
-            m1[0, 0] = -6;
-            m1[0, 1] = 1;
-            m1[0, 2] = 1;
-            m1[0, 3] = 6;
-            m1[1, 0] = -8;
-            m1[1, 1] = 5;
-            m1[1, 2] = 8;
-            m1[1, 3] = 6;
-            m1[2, 0] = -1;
-            m1[2, 1] = 0;
-            m1[2, 2] = 8;
-            m1[2, 3] = 2;
-            m1[3, 0] = -7;
-            m1[3, 1] = 1;
-            m1[3, 2] = -1;
-            m1[3, 3] = 1;
+        Matrix m1 = new(4, 4);
+        m1[0, 0] = -6;
+        m1[0, 1] = 1;
+        m1[0, 2] = 1;
+        m1[0, 3] = 6;
+        m1[1, 0] = -8;
+        m1[1, 1] = 5;
+        m1[1, 2] = 8;
+        m1[1, 3] = 6;
+        m1[2, 0] = -1;
+        m1[2, 1] = 0;
+        m1[2, 2] = 8;
+        m1[2, 3] = 2;
+        m1[3, 0] = -7;
+        m1[3, 1] = 1;
+        m1[3, 2] = -1;
+        m1[3, 3] = 1;
 
-            Matrix submatrix = m1.Submatrix(2, 1);
-            submatrix[0, 0].ShouldBeAbout(-6);
-            submatrix[0, 1].ShouldBeAbout(1);
-            submatrix[0, 2].ShouldBeAbout(6);
-            submatrix[1, 0].ShouldBeAbout(-8);
-            submatrix[1, 1].ShouldBeAbout(8);
-            submatrix[1, 2].ShouldBeAbout(6);
-            submatrix[2, 0].ShouldBeAbout(-7);
-            submatrix[2, 1].ShouldBeAbout(-1);
-            submatrix[2, 2].ShouldBeAbout(1);
-        }
+        Matrix submatrix = m1.Submatrix(2, 1);
+        submatrix[0, 0].ShouldBeAbout(-6);
+        submatrix[0, 1].ShouldBeAbout(1);
+        submatrix[0, 2].ShouldBeAbout(6);
+        submatrix[1, 0].ShouldBeAbout(-8);
+        submatrix[1, 1].ShouldBeAbout(8);
+        submatrix[1, 2].ShouldBeAbout(6);
+        submatrix[2, 0].ShouldBeAbout(-7);
+        submatrix[2, 1].ShouldBeAbout(-1);
+        submatrix[2, 2].ShouldBeAbout(1);
+
     }
 
     [Fact]

@@ -5,6 +5,7 @@ namespace RayTracerChallenge.Features.Primitives;
 public class Sphere
 {
     public Matrix Transform { get; set; } = Matrix.IdentityMatrix;
+    public Material Material { get; set; } = new();
 
     public Intersection[] Intersect(Ray ray)
     {
