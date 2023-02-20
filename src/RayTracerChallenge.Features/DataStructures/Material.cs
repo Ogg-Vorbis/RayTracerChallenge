@@ -2,7 +2,7 @@
 
 namespace RayTracerChallenge.Features
 {
-    public struct Material
+    public class Material
     {
         public Material()
         {

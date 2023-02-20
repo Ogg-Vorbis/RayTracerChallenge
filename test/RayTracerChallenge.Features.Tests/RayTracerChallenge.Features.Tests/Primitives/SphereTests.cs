@@ -185,7 +185,7 @@ public class SphereTests
     public void SphereHasDefaultMaterial()
     {
         var s = new Sphere();
-        s.Material.ShouldBe(new Material());
+        s.Material.ShouldBeEquivalentTo(new Material());
     }
 
     [Fact]
