@@ -78,4 +78,56 @@ public class IntersectionTests
         var i = Intersection.Hit(xs);
         i.ShouldBe(i4);
     }
+
+    [Fact]
+    public void PrecomputingTheStateOfAnIntersection()
+    {
+        // Arrange
+        var r = new Ray(Element.CreatePoint(0, 0, -5), Element.CreateVector(0, 0, 1));
+        var shape = new Sphere();
+        var i = new Intersection(4f, shape);
+
+        // Act
+        Computations comps = Computations.Prepare(i, r);
+
+        // Assert
+        comps.T.ShouldBeAbout(i.T);
+        comps.Object.ShouldBeEquivalentTo(i.Object);
+        comps.Point.ShouldBe(Element.CreatePoint(0, 0, -1));
+        comps.EyeVector.ShouldBe(Element.CreateVector(0, 0, -1));
+        comps.NormalVector.ShouldBe(Element.CreateVector(0, 0, -1));
+    }
+
+    [Fact]
+    public void TheHitWhenAnIntersectionOccursOnTheOutside()
+    {
+        // Arrange
+        var r = new Ray(Element.CreatePoint(0, 0, -5), Element.CreateVector(0, 0, 1));
+        var shape = new Sphere();
+        var i = new Intersection(4f, shape);
+
+        // Act
+        Computations comps = Computations.Prepare(i, r);
+
+        // Assert
+        comps.Inside.ShouldBe(false);
+    }
+
+    [Fact]
+    public void TheHitWhenAnIntersectionOccursOnTheInside()
+    {
+        // Arrange
+        var r = new Ray(Element.CreatePoint(0, 0, 0), Element.CreateVector(0, 0, 1));
+        var shape = new Sphere();
+        var i = new Intersection(1f, shape);
+
+        // Act
+        Computations comps = Computations.Prepare(i, r);
+
+        // Assert
+        comps.Point.ShouldBe(Element.CreatePoint(0, 0, 1));
+        comps.EyeVector.ShouldBe(Element.CreateVector(0, 0, -1));
+        comps.Inside.ShouldBe(true);
+        comps.NormalVector.ShouldBe(Element.CreateVector(0, 0, -1));
+    }
 }

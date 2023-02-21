@@ -1,8 +1,9 @@
 ﻿using RayTracerChallenge.Features.DataStructures;
+using RayTracerChallenge.Features.Interfaces;
 
 namespace RayTracerChallenge.Features.Primitives;
 
-public class Sphere
+public class Sphere : IPrimitive
 {
     public Matrix Transform { get; set; } = Matrix.IdentityMatrix;
     public Material Material { get; set; } = new();
@@ -11,14 +12,14 @@ public class Sphere
     {
         var transformedRay = ray.Transform(Transform.Inverse());
         var sphereToRay = transformedRay.Origin - Element.CreatePoint(0, 0, 0);
-        var a = Element.Dot(transformedRay.Direction, transformedRay.Direction);
-        var b = 2 * Element.Dot(transformedRay.Direction, sphereToRay);
-        var c = Element.Dot(sphereToRay, sphereToRay) - 1;
+        float a = Element.Dot(transformedRay.Direction, transformedRay.Direction);
+        float b = 2f * Element.Dot(transformedRay.Direction, sphereToRay);
+        float c = Element.Dot(sphereToRay, sphereToRay) - 1f;
 
-        var discriminant = (b * b) - 4 * a * c;
+        float discriminant = (b * b) - 4f * a * c;
         if (discriminant < 0) return Array.Empty<Intersection>();
-        var t1 = (-b - MathF.Sqrt(discriminant)) / (2 * a);
-        var t2 = (-b + MathF.Sqrt(discriminant)) / (2 * a);
+        float t1 = (-b - MathF.Sqrt(discriminant)) / (2f * a);
+        float t2 = (-b + MathF.Sqrt(discriminant)) / (2f * a);
         return new Intersection[2] { new Intersection(t1, this), new Intersection(t2, this) };
     }
 
