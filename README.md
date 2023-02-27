@@ -29,3 +29,6 @@ Play and experiment as you discover the fun of writing a ray tracer. Accept the 
 ![Sphere Hit Exercise Book Solution](https://github.com/Ogg-Vorbis/RayTracerChallenge/blob/master/output/SphereHitsExercise-BookSolution.png?raw=true)
 #### With Lighting and Shading
 ![Sphere Hit Exercise with Lighting and Shading](https://github.com/Ogg-Vorbis/RayTracerChallenge/blob/master/output/SphereHitsWithMaterialExercise.png?raw=true)
+
+### Making A Scene Exercise
+![Making A Scene Exercise](https://github.com/Ogg-Vorbis/RayTracerChallenge/blob/master/output/MakingASceneExercise.png?raw=true)
