@@ -6,10 +6,11 @@ namespace RayTracerChallenge.Features.Extensions;
 
 public static class MatrixExtensions
 {
-    public static Matrix Rotate(this Matrix m, Axis axis, float degrees)
+    public static Matrix Rotate(this Matrix m, Axis axis, AngleUnits angleUnits, float angle)
     {
-        var radians = MathHelpers.DegreesToRadians(degrees);
-        return Transformations.CreateRotationMatrix(axis, radians) * m;
+        if (angleUnits == AngleUnits.Degrees)
+            angle = MathHelpers.DegreesToRadians(angle);
+        return Transformations.CreateRotationMatrix(axis, angle) * m;
     }
 
     public static Matrix Scale(this Matrix m, float x, float y, float z)

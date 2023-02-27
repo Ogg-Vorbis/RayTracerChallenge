@@ -1,4 +1,5 @@
 ﻿using RayTracerChallenge.Features.Actions;
+using RayTracerChallenge.Features.Enums;
 using RayTracerChallenge.Features.Extensions;
 using RayTracerChallenge.Features.Primitives;
 using RayTracerChallenge.Features.Tests.Extensions.Shouldly;
@@ -174,7 +175,7 @@ public class SphereTests
     public void ComputingNormalOnTransformedSphere()
     {
         Sphere s = new();
-        s.Transform = s.Transform.Rotate(Enums.Axis.Z, MathHelpers.RadiansToDegrees(MathF.PI / 5)).Scale(1, 0.5f, 1f);
+        s.Transform = s.Transform.Rotate(Axis.Z, AngleUnits.Radians, MathF.PI / 5).Scale(1, 0.5f, 1f);
         var n = s.NormalAt(Element.CreatePoint(0, MathF.Sqrt(2)/2, (-MathF.Sqrt(2)) / 2));
         n.X.ShouldBeAbout(0);
         n.Y.ShouldBeAbout(0.97014f);

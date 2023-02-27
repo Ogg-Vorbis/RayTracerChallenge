@@ -8,4 +8,12 @@ public static class FloatShouldlyExtensions
     {
         testedValue.ShouldBe(expectedValue, _epsilon);
     }
+
+    //public static void ShouldBe(this Element testedValue, Element expectedValue)
+    //{
+    //    testedValue.X.ShouldBeAbout(expectedValue.X);
+    //    testedValue.Y.ShouldBeAbout(expectedValue.Y);
+    //    testedValue.Z.ShouldBeAbout(expectedValue.Z);
+    //    testedValue.W.ShouldBe(expectedValue.W);
+    //}
 }

@@ -240,7 +240,7 @@ public class TransformationsTests
         Element p = Element.CreatePoint(1, 0, 1);
 
         Matrix X = Matrix.IdentityMatrix
-            .Rotate(Axis.X, 90)
+            .Rotate(Axis.X, AngleUnits.Degrees, 90)
             .Scale(5, 5, 5)
             .Translate(10, 5, 7);
 

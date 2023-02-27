@@ -1,4 +1,6 @@
-﻿namespace RayTracerChallenge.Features.DataStructures;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace RayTracerChallenge.Features.DataStructures;
 
 public readonly struct Element
 {
@@ -104,5 +106,30 @@ public readonly struct Element
     public Element Reflect(Element n)
     {
         return this - n * 2 * Dot(this, n);
+    }
+
+    public override bool Equals([NotNullWhen(true)] object? obj)
+    {
+        if (obj is null) return false;
+        var item = (Element)obj;
+        return FloatComparison.AboutEqual(item.X, X)
+               && FloatComparison.AboutEqual(item.Y, Y)
+               && FloatComparison.AboutEqual(item.Z, Z)
+               && item.W == W;
+    }
+
+    public static bool operator ==(Element left, Element right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(Element left, Element right)
+    {
+        return !(left == right);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(X, Y, Z, W);
     }
 }
