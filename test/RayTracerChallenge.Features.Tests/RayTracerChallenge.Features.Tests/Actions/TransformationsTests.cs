@@ -246,4 +246,79 @@ public class TransformationsTests
 
         (X * p).ShouldBe(Element.CreatePoint(15, 0, 7));
     }
+
+    [Fact]
+    public void TheTransformationMatrixForTheDefaultOrientation()
+    {
+        // Arrange
+        var from = Element.CreatePoint(0, 0, 0);
+        var to = Element.CreatePoint(0, 0, -1);
+        var up = Element.CreateVector(0, 1, 0);
+
+        // Act
+        var t = Transformations.ViewTransform(from, to, up);
+
+        // Assert
+        t.ShouldBe(Matrix.IdentityMatrix);
+    }
+
+    [Fact]
+    public void ViewTransformationMatrixLookingInPositiveZDirection()
+    {
+        // Arrange
+        var from = Element.CreatePoint(0, 0, 0);
+        var to = Element.CreatePoint(0, 0, 1);
+        var up = Element.CreateVector(0, 1, 0);
+
+        // Act
+        var t = Transformations.ViewTransform(from, to, up);
+
+        // Assert
+        t.ShouldBe(Matrix.IdentityMatrix.Scale(-1, 1, -1));
+    }
+
+    [Fact]
+    public void ViewTransformationMovesTheWorld()
+    {
+        // Arrange
+        var from = Element.CreatePoint(0, 0, 8);
+        var to = Element.CreatePoint(0, 0, 0);
+        var up = Element.CreateVector(0, 1, 0);
+
+        // Act
+        var t = Transformations.ViewTransform(from, to, up);
+
+        // Assert
+        t.ShouldBe(Matrix.IdentityMatrix.Translate(0, 0, -8));
+    }
+
+    [Fact]
+    public void ArbitraryViewTransformation()
+    {
+        // Arrange
+        var from = Element.CreatePoint(1, 3, 2);
+        var to = Element.CreatePoint(4, -2, 8);
+        var up = Element.CreateVector(1, 1, 0);
+
+        // Act
+        var t = Transformations.ViewTransform(from, to, up);
+
+        // Assert
+        t[0, 0].ShouldBeAbout(-0.50709f);
+        t[0, 1].ShouldBeAbout(0.50709f);
+        t[0, 2].ShouldBeAbout(0.67612f);
+        t[0, 3].ShouldBeAbout(-2.36643f);
+        t[1, 0].ShouldBeAbout(0.76772f);
+        t[1, 1].ShouldBeAbout(0.60609f);
+        t[1, 2].ShouldBeAbout(0.12122f);
+        t[1, 3].ShouldBeAbout(-2.82843f);
+        t[2, 0].ShouldBeAbout(-0.35857f);
+        t[2, 1].ShouldBeAbout(0.59761f);
+        t[2, 2].ShouldBeAbout(-0.71714f);
+        t[2, 3].ShouldBeAbout(0.0f);
+        t[3, 0].ShouldBeAbout(0f);
+        t[3, 1].ShouldBeAbout(0f);
+        t[3, 2].ShouldBeAbout(0f);
+        t[3, 3].ShouldBeAbout(1f);
+    }
 }
