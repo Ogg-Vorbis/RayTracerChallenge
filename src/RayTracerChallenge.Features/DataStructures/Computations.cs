@@ -4,7 +4,7 @@ namespace RayTracerChallenge.Features.DataStructures;
 
 public struct Computations
 {
-    public Computations(float t, IPrimitive @object, Element point, Element eyeVector, Element normalVector, bool inside)
+    public Computations(float t, IPrimitive @object, Element point, Element eyeVector, Element normalVector, bool inside, Element overPoint)
     {
         T = t;
         Object = @object;
@@ -12,11 +12,13 @@ public struct Computations
         EyeVector = eyeVector;
         NormalVector = normalVector;
         Inside = inside;
+        OverPoint = overPoint;
     }
 
     public float T { get; set; }
     public IPrimitive Object { get; set; }
     public Element Point { get; set; }
+    public Element OverPoint { get; set; }
     public Element EyeVector { get; set; }
     public Element NormalVector { get; set; }
     public bool Inside { get; set; }
@@ -35,12 +37,15 @@ public struct Computations
             normalVector = -normalVector;
         }
 
+        Element overpoint = point + normalVector * FloatComparison._epsilon;
+
         var comps = new Computations(i.T,
                                      i.Object,
                                      point,
                                      eyeVector,
                                      normalVector,
-                                     inside);
+                                     inside,
+                                     overpoint);
         return comps;
     }
 }

@@ -133,4 +133,70 @@ public class WorldTests
         c.ShouldBe(inner.Material.Color);
     }
 
+    [Fact]
+    public void ThereIsNoShadowWhenNothingIsCollinearWithPointAndLight()
+    {
+        // Arrange
+        var w = World.CreateDefaultWorld();
+        var p = Element.CreatePoint(0, 10, 0);
+
+        // Assert
+        w.IsShadowed(p).ShouldBe(false);
+    }
+
+    [Fact]
+    public void TheShadowWhenAnObjectIsBetweenThePointAndLight()
+    {
+        // Arrange
+        var w = World.CreateDefaultWorld();
+        var p = Element.CreatePoint(10, -10, 10);
+
+        // Assert
+        w.IsShadowed(p).ShouldBe(true);
+    }
+
+    [Fact]
+    public void ThereIsNoShadowWhenAnObjectIsBehindTheLight()
+    {
+        // Arrange
+        var w = World.CreateDefaultWorld();
+        var p = Element.CreatePoint(-20, 20, -20);
+
+        // Assert
+        w.IsShadowed(p).ShouldBe(false);
+    }
+
+    [Fact]
+    public void ThereIsNoShadowWhenAnObjectIsBehindThePoint()
+    {
+        // Arrange
+        var w = World.CreateDefaultWorld();
+        var p = Element.CreatePoint(-2, 2, -2);
+
+        // Assert
+        w.IsShadowed(p).ShouldBe(false);
+    }
+
+    [Fact]
+    public void ShadeHitIsGivenAnIntersectionInShadow()
+    {
+        // Arrange
+        var w = new World();
+        w.Light = new(Element.CreatePoint(0, 0, -10),
+                        new Color(1, 1, 1));
+        var s1 = new Sphere();
+        w.Objects.Add(s1);
+        var s2 = new Sphere();
+        s2.Transform = s2.Transform.Translate(0, 0, 10);
+        w.Objects.Add(s2);
+        var r = new Ray(Element.CreatePoint(0, 0, 5), Element.CreateVector(0, 0, 1));
+        var i = new Intersection(4, s2);
+
+        // Act
+        var comps = Computations.Prepare(i, r);
+        var c = w.ShadeHit(comps);
+
+        // Assert
+        c.ShouldBe(new Color(0.1f, 0.1f, 0.1f));
+    }
 }

@@ -59,7 +59,7 @@ namespace RayTracerChallenge.Exercises.Exercises
                         var point = r.Position(hit.T);
                         var normal = hit.Object.NormalAt(point);
                         var eye = -r.Direction;
-                        var calculatedColor = hit.Object.Material.Lighting(light, point, eye, normal);
+                        var calculatedColor = hit.Object.Material.Lighting(light, point, eye, normal, false);
 
                         _consoleWriter.WriteLine($"Hit at {hit.T}");
                         canvas.WritePixel(x, y, calculatedColor);

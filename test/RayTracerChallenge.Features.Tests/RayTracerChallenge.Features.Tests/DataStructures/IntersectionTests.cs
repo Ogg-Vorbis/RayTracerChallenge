@@ -1,9 +1,12 @@
-﻿using RayTracerChallenge.Features.Primitives;
+﻿using RayTracerChallenge.Features.Extensions;
+using RayTracerChallenge.Features.Primitives;
 
 namespace RayTracerChallenge.Features.Tests.DataStructures;
 
 public class IntersectionTests
 {
+    private const float _epsilon = 0.0001f;
+
     [Fact]
     public void IntersectionEncapsulatesTandObject()
     {
@@ -129,5 +132,22 @@ public class IntersectionTests
         comps.EyeVector.ShouldBe(Element.CreateVector(0, 0, -1));
         comps.Inside.ShouldBe(true);
         comps.NormalVector.ShouldBe(Element.CreateVector(0, 0, -1));
+    }
+
+    [Fact]
+    public void HitShouldOffsetThePoint()
+    {
+        // Arrange
+        var r = new Ray(Element.CreatePoint(0, 0, -5), Element.CreateVector(0, 0, 1));
+        var shape = new Sphere();
+        shape.Transform = shape.Transform.Translate(0, 0, 1);
+        var i = new Intersection(5, shape);
+
+        // Act
+        var comps = Computations.Prepare(i, r);
+
+        // Assert
+        comps.OverPoint.Z.ShouldBeLessThan(-_epsilon/2);
+        comps.Point.Z.ShouldBeGreaterThan(comps.OverPoint.Z);
     }
 }

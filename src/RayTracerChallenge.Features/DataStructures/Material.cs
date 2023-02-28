@@ -14,7 +14,7 @@ namespace RayTracerChallenge.Features
         public float Specular { get; set; } = 0.9f;
         public float Shininess { get; set; } = 200f;
 
-        public Color Lighting(PointLight light, Element point, Element eyev, Element normalv)
+        public Color Lighting(PointLight light, Element point, Element eyev, Element normalv, bool inShadow)
         {
             var effectiveColor = Color * light.Intensity;
             var lightv = (light.Position - point).Normalize();
@@ -22,7 +22,7 @@ namespace RayTracerChallenge.Features
             var lightDotNormal = Element.Dot(lightv, normalv);
             Color diffuse = new(0,0,0);
             Color specular = new(0, 0, 0);
-            if (lightDotNormal >= 0)
+            if (lightDotNormal >= 0 && !inShadow)
             {
                 diffuse = effectiveColor * Diffuse * lightDotNormal;
                 var reflectv = -lightv.Reflect(normalv);

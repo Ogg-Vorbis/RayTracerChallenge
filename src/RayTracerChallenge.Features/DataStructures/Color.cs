@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 
 namespace RayTracerChallenge.Features.DataStructures;
 
@@ -45,31 +46,6 @@ public readonly struct Color
         return new Color(left.Red * scalar, left.Green * scalar, left.Blue * scalar);
     }
 
-    public static bool operator ==(Color left, Color right)
-    {
-        return (left.Red == right.Red
-                && left.Green == right.Green
-                && left.Blue == right.Blue);
-    }
-
-    public static bool operator !=(Color left, Color right)
-    {
-        return !(left.Red == right.Red
-                && left.Green == right.Green
-                && left.Blue == right.Blue);
-    }
-
-    public override bool Equals(object? obj)
-    {
-        if (obj is null) return false;
-        return obj is Color && this == (Color)obj;
-    }
-
-    public override int GetHashCode()
-    {
-        return base.GetHashCode();
-    }
-
     public Color ChangeColorBrightness(float correctionFactor)
     {
         float red = Red * 255f;
@@ -91,5 +67,29 @@ public readonly struct Color
         }
 
         return new Color(red / 255f, green / 255f, blue/ 255f);
+    }
+
+    public override bool Equals([NotNullWhen(true)] object? obj)
+    {
+        if (obj is null) return false;
+        var item = (Color)obj;
+        return FloatComparison.AboutEqual(item.Red, Red)
+               && FloatComparison.AboutEqual(item.Green, Green)
+               && FloatComparison.AboutEqual(item.Blue, Blue);
+    }
+
+    public static bool operator ==(Color left, Color right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(Color left, Color right)
+    {
+        return !(left == right);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Red, Green, Blue);
     }
 }

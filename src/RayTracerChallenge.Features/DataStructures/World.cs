@@ -58,12 +58,33 @@ public class World
         return intersections.OrderBy(e => e.T).ToArray();
     }
 
+    public bool IsShadowed(Element p)
+    {
+        _ = Light ?? throw new ArgumentNullException("Light", "Light parameter should not be null when checking shadows");
+
+        var v = Light.Position - p;
+        var distance = v.GetMagnitude();
+        var direction = v.Normalize();
+
+        var r = new Ray(p, direction);
+        var intersections = Intersect(r);
+
+        var h = Intersection.Hit(intersections);
+        if(h is not null && h.T < distance)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public Color ShadeHit(Computations comps)
     {
         _ = Light ?? throw new ArgumentNullException("Light", "Light parameter should not be null when performing shade hit calculations");
+        bool inShadow = IsShadowed(comps.OverPoint);
         return comps.Object.Material.Lighting(Light,
-                                              comps.Point,
+                                              comps.OverPoint,
                                               comps.EyeVector,
-                                              comps.NormalVector);
+                                              comps.NormalVector,
+                                              inShadow);
     }
 }
